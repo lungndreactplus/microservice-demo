@@ -1,0 +1,59 @@
+##server:
+##  port: 8080
+#
+#spring:
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: product-service
+#          uri: lb://product-service
+#          predicates:
+#            - Path=/api/product
+#        #          filters:
+#        #            - RewritePath=/product/(?<segment>.*), /${segment}
+#        - id: order-service
+#          uri: uri=lb://order-service
+#          predicates:
+#            - Path=/api/order
+#  #          filters:
+#  #            - RewritePath=/order/(?<segment>.*), /${segment}
+#
+#        - id: discovery-server
+#          uri: http://eureka:password@${app.eureka-server}:8761
+#          predicates:
+#            - Path=/eureka/web
+#          filters:
+#            - SetPath=/
+#
+#        - id: discovery-server-static
+#          uri: http://eureka:password@${app.eureka-server}:8761
+#          predicates:
+#            - Path=/eureka/**
+#
+#
+#  #      default-filters:
+#  #        - TokenRelay
+#
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          keycloak:
+#            client-id: spring-cloud-client
+#            client-secret: 32LYPM2lohNEZPCAKRE0gZReqrHMvI2y
+#            scope: openid, profile, email
+#            authorization-grant-type: authorization_code
+#        #            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+#        provider:
+#          keycloak:
+#            authorization-uri: http://localhost:8181/realms/spring-boo-microservices-realm/protocol/openid-connect/auth
+#            token-uri: http://localhost:8181/realms/spring-boo-microservices-realm/protocol/openid-connect/token
+#            user-info-uri: http://localhost:8181/realms/spring-boo-microservices-realm/protocol/openid-connect/userinfo
+#            jwk-set-uri: http://localhost:8181/realms/spring-boo-microservices-realm/protocol/openid-connect/certs
+##            user-name-attribute: preferred_username
+##Eureka-Client
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
+#
