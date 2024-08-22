@@ -1,11 +1,13 @@
 package com.example.common.exceptions;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 
 public class ApplicationException extends RuntimeException {
 
     private final HttpStatus httpStatus;
+    @Getter
     private final String message;
 
     public String stackTrace;
@@ -18,10 +20,6 @@ public class ApplicationException extends RuntimeException {
 
     public HttpStatusCode getHttpStatus() {
         return httpStatus;
-    }
-
-    public String getMessage() {
-        return message;
     }
 
     public String stackTraceToString(Throwable e) {

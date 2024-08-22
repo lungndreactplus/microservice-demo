@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Component
 public class AuthorizationExecutor implements PermissionEvaluator {
 
-    private PolicyExecutor policyExecutor;
+    private final PolicyExecutor policyExecutor;
 
     public AuthorizationExecutor(PolicyExecutor policyExecutor) {
         this.policyExecutor = policyExecutor.InitPolicyExecutor();

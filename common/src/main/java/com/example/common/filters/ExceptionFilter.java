@@ -13,12 +13,11 @@ public class ExceptionFilter {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleException(Exception ex, HttpServletRequest request) {
-        if (ex instanceof ApplicationException) {
-            var appEx = (ApplicationException) ex;
+        if (ex instanceof ApplicationException appEx) {
             var body = new ResponseDto(appEx.getHttpStatus().value(), appEx.getMessage(), null, null, appEx.stackTrace);
-            return new ResponseEntity<>(body, ((ApplicationException) ex).getHttpStatus());
+            return new ResponseEntity<>(body, appEx.getHttpStatus());
         }
-        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
 
