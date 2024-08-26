@@ -15,24 +15,41 @@ java {
 
 repositories {
     mavenCentral()
+    mavenLocal()
+//    flatDir {
+//        dirs '../library'
+//    }
 }
 ext {
     set('springCloudVersion', "2023.0.3")
 }
 dependencies {
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-database-postgresql'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    runtimeOnly 'com.h2database:h2'
+
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+//    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'io.micrometer:micrometer-tracing-bridge-brave'
     implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
-//    implementation 'org.springframework.boot:spring-boot-starter-security'
-//    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation 'com.jayway.jsonpath:json-path:2.9.0'
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    implementation 'org.example:multitenant:0.0.1-SNAPSHOT'
+//    implementation project(':multitenant')
+//    implementation name: 'multitenant-0.0.1-SNAPSHOT'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.testcontainers:mongodb'
     testImplementation 'org.testcontainers:junit-jupiter'
@@ -47,3 +64,5 @@ dependencyManagement {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+

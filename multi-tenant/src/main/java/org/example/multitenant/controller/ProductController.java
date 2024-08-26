@@ -1,13 +1,12 @@
-package org.example.productservice.controller;
+package org.example.multitenant.controller;
 
-import org.example.productservice.dto.ProductRequest;
-import org.example.productservice.dto.ProductResponse;
-import org.example.productservice.service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
+
+
+import org.example.multitenant.dto.ProductRequest;
+import org.example.multitenant.dto.ProductResponse;
+import org.example.multitenant.service.ProductService;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,9 +18,7 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
-//    @Value("${datasource.tenants.names:default unknown}")
-    @Value("${message:default message}")
-    private String message;
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
 //    @PreAuthorize("hasAuthority('ADMIN') and hasAuthority('SCOPE_create_product')")
@@ -31,14 +28,14 @@ public class ProductController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-//    @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN') and hasAuthority('SCOPE_view_product')")
     public List<ProductResponse> getAllProducts() {
         return productService.getAllProducts();
     }
-    @GetMapping("/message")
-    public String getMessage() {
-        return message;
-    }
 
+    @GetMapping("productandtestproduct")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProductResponse> getAllProductsAndTestProduct() {
+        return productService.getAllProductsAndTestProduct();
+    }
 
 }
