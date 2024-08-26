@@ -1,6 +1,6 @@
-package org.example.productservice.repository;
+package org.example.multitenant.repository.dao.product;
 
-import org.example.productservice.model.Product;
+import org.example.multitenant.model.product.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
