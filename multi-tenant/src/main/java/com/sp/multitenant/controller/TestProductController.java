@@ -5,6 +5,7 @@ import com.sp.multitenant.dto.ProductResponse;
 import com.sp.multitenant.service.TestProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class TestProductController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+
     public List<ProductResponse> getAllProducts() {
         return testproductService.getAllTestProducts();
     }

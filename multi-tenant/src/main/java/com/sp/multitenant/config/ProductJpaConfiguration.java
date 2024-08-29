@@ -1,13 +1,10 @@
 package com.sp.multitenant.config;
 
-import jakarta.persistence.EntityManagerFactory;
-import com.sp.library.jpaconfig.BaseJpaConfiguration;
+import com.sp.common.jpaconfig.BaseJpaConfiguration;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;

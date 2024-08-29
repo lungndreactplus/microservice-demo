@@ -1,0 +1,49 @@
+#spring:
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          jwk-set-uri: http://172.16.0.207:8080/realms/secured-application/protocol/openid-connect/certs
+#  cloud:
+#    bus:
+#      enabled: true
+#      ack:
+#        enabled: false
+#    config:
+#      enabled: true
+#    function:
+#      definition: payment
+#    stream:
+#      bindings:
+#        springCloudBusInput:
+#          destination: springCloudBus
+#          group: cloud-config-group
+#        payment-in-0:
+#          destination: order-payment-topic
+#          group: order-group
+#      #        functionString-in-0:
+#      #          destination: processor-topic
+#      #        functionString-out-0:
+#      #          destination: consumer-topic
+#      #        consumerString-in-0:
+#      #          destination: consumer-topic
+#      binders:
+#        bus:
+#          type: kafka
+#          defaultCandidate: false
+#          environment:
+#            spring:
+#              cloud:
+#                stream:
+#                  kafka:
+#                    binder:
+#                      brokers: localhost:9092
+##      kafka:
+##        binder:
+##          brokers: localhost:9092
+#
+#message: hello payment service 123
+#keycloak.url: http://172.16.0.207:8080
+#keycloak.realm: secured-application
+#keycloak.service: auth
+#keycloak.secret: szYBNkmnzIZJIxIfd3PjjW43n37ayTv5

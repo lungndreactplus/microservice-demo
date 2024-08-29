@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.3.3'
     id 'io.spring.dependency-management' version '1.1.6'
+    id 'maven-publish'
 }
 
 ext {
@@ -35,6 +36,7 @@ dependencies {
     implementation 'org.keycloak:keycloak-policy-enforcer:25.0.2'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -48,4 +50,24 @@ dependencyManagement {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+
+            from components.java
+
+            versionMapping {
+                allVariants {
+                    fromResolutionOf("runtimeClasspath")
+                }
+            }
+            groupId = 'com.sp'
+            artifactId = 'common'
+            version = '0.0.1'
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
 }

@@ -1,0 +1,131 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.3'
+    id 'io.spring.dependency-management' version '1.1.6'
+//    id 'maven-publish'
+}
+
+ext {
+    springCloudVersion = "2023.0.3"
+}
+
+group = 'com.sp'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.flywaydb:flyway-database-postgresql'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'org.springframework.cloud:spring-cloud-stream'
+    implementation 'org.springframework.kafka:spring-kafka'
+    implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka'
+    testImplementation 'org.springframework.cloud:spring-cloud-stream-test-binder'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
+    runtimeOnly 'com.h2database:h2'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.cloud:spring-cloud-starter-bus-kafka'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    implementation 'com.sp:common:0.0.1'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
+    }
+}
+//bootJar {
+//    enabled = false // Tắt việc tạo JAR thực thi
+//}
+tasks.named('test') {
+    useJUnitPlatform()
+}
+//publishing {
+//    publications {
+//        mavenJava(MavenPublication) {
+//
+//            from components.java
+//
+//            versionMapping {
+//                allVariants {
+//                    fromResolutionOf("runtimeClasspath")
+//                }
+//            }
+//            groupId = 'com.sp'
+//            artifactId = 'multitenant'
+//            version = '0.0.1-SNAPSHOT'
+//        }
+//    }
+//    repositories {
+//        mavenLocal()
+//
+//    }
+//}
+
+
+//publishing {
+//    publications {
+//        myLib(MavenPublication) {
+//            from components.java
+//
+//            // Thêm thông tin phiên bản
+//            groupId = 'com.sp'
+//            artifactId = 'my-lib'
+//            version = '0.0.1-SNAPSHOT'
+//
+//            // Optionally add more metadata
+//            pom {
+//                name.set('My Library')
+//                description.set('A description of my library')
+//                url.set('https://example.com/my-lib')
+//
+//                licenses {
+//                    license {
+//                        name.set('The Apache License, Version 2.0')
+//                        url.set('https://www.apache.org/licenses/LICENSE-2.0')
+//                    }
+//                }
+//
+//                developers {
+//                    developer {
+//                        id.set('developer')
+//                        name.set('Developer Name')
+//                        email.set('developer@example.com')
+//                    }
+//                }
+//
+//                scm {
+//                    connection.set('scm:git:git://github.com/example/my-lib.git')
+//                    developerConnection.set('scm:git:ssh://github.com/example/my-lib.git')
+//                    url.set('https://github.com/example/my-lib')
+//                }
+//            }
+//        }
+//    }
+//
+//    repositories {
+//        maven {
+//            url = uri('path/to/local/repo') // Thay đổi đường dẫn này theo nhu cầu của bạn
+//        }
+//    }
+//}

@@ -1,6 +1,6 @@
 package com.sp.multitenant.config;
 
-import com.sp.library.jpaconfig.BaseJpaConfiguration;
+import com.sp.common.jpaconfig.BaseJpaConfiguration;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -19,7 +19,7 @@ import java.util.Properties;
         entityManagerFactoryRef = "userEntityManagerFactory",
         transactionManagerRef = "userTransactionManager"
 )
-public class UserJpaConfiguration extends BaseJpaConfiguration{
+public class UserJpaConfiguration extends BaseJpaConfiguration {
     @Bean
     public LocalContainerEntityManagerFactoryBean userEntityManagerFactory(
             @Qualifier("userDataSource") DataSource dataSource)

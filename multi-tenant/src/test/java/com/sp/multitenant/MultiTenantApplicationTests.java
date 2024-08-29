@@ -1,10 +1,9 @@
-package com.sp.common;
+package com.sp.multitenant;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CommonApplicationTests {
+class MultiTenantApplicationTests {
 
 //    @Test
 //    void contextLoads() {
